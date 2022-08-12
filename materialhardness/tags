@@ -1,0 +1,97 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/phuoc/repo/MaterialHardNess/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
+>	utils.jl	/^macro >(exs...)$/;"	f
+>=	utils.jl	/^macro >=(x, exs...)$/;"	f
+GridSearchCV	xgboost-params-search.jl	/^GridSearchCV = pyimport("sklearn.model_selection").GridSearchCV$/;"	v
+X	xgboost-params-search.jl	/^X = X';$/;"	v
+XGBRegressor	xgboost-params-search.jl	/^XGBRegressor = pyimport("xgboost").XGBRegressor$/;"	v
+XGBRegressor	xgboost.jl	/^XGBRegressor = pyimport("xgboost").XGBRegressor$/;"	v
+best_r2	xgboost-params-search.jl	/^best_r2 = 0$/;"	v
+call	utils.jl	/^call(f, x) = f(x)$/;"	f
+callex	utils.jl	/^  callex(head, f, x, xs...) = ex = :_ in xs ? Expr(:call, Expr(head, f, xs...), x) : Expr(head, f, x, xs...)$/;"	f
+cats	utils.jl	/^cats(xs; dims=ndims(xs[1])+1) = cat(xs..., dims=dims)$/;"	f
+classification_report	xgboost-params-search.jl	/^classification_report = pyimport("sklearn.metrics").classification_report$/;"	v
+classification_report	xgboost.jl	/^classification_report = pyimport("sklearn.metrics").classification_report$/;"	v
+col	data-material.jl	/^const col = colid$/;"	c
+col	data.jl	/^const col = colid$/;"	v
+colid	data-material.jl	/^colid(name::Symbol) = colid(string(name))$/;"	f
+colid	data-material.jl	/^function colid(name::String)$/;"	f
+colid	data.jl	/^colid(name::Symbol) = colid(string(name))$/;"	f
+colid	data.jl	/^function colid(name::String)$/;"	f
+copystruct!	utils.jl	/^function copystruct!(a::T, b::U) where {T, U}$/;"	f
+cross_val_score	xgboost-params-search.jl	/^cross_val_score = pyimport("sklearn.model_selection").cross_val_score$/;"	v
+cross_val_score	xgboost.jl	/^cross_val_score = pyimport("sklearn.model_selection").cross_val_score$/;"	v
+d1	xgboost.jl	/^d1 = xgboost_each_fold(; get_data)  # run 5 fold CV and report R2 score for each fold$/;"	v
+d2	xgboost.jl	/^d2 = xgboost_each_feature(; get_data)  # run on a 5-fold split and report R2 score for each feature mention above. This is for reporting feature importance$/;"	v
+data2	data-material.jl	/^function data2(cluster = 1)$/;"	f
+data2_20	data-material.jl	/^function data2_20(cluster = 1)$/;"	f
+data2_cosine	data-material.jl	/^function data2_cosine(cluster = 1)$/;"	f
+data_local_full	data.jl	/^function data_local_full(; feature, removed_outliers)$/;"	f
+data_raw	data.jl	/^function data_raw(; label = "K_VRH", feature=:AllNoDefective, removed_outliers=false, normalized=true, normx=:√, normy=:noop)  # "G_VRH"$/;"	f
+data_raw_updated	data.jl	/^function data_raw_updated(; label = "G_VRH", feature=:AllNoDefective, removed_outliers=false, normalized=true, normx, normy)  # "G_VRH"$/;"	f
+data_update	data.jl	/^function data_update(; label, feature, removed_outliers)$/;"	f
+data_update_local_full	data.jl	/^function data_update_local_full(; feature, removed_outliers)$/;"	f
+data_updated	data.jl	/^function data_updated()$/;"	f
+data_xgboost	data-material.jl	/^function data_xgboost()$/;"	f
+data_xgboost	data.jl	/^function data_xgboost(; label, feature, removed_outliers)$/;"	f
+datadir	data.jl	/^datadir = ENV["HOME"] * "\/datasets\/materials"$/;"	v
+datasets	xgboost-params-search.jl	/^datasets = pyimport("sklearn.datasets")$/;"	v
+datasets	xgboost.jl	/^datasets = pyimport("sklearn.datasets")$/;"	v
+extract	utils.jl	/^macro extract(m, vs)$/;"	f
+feature	data.jl	/^feature=:AllNoDefective$/;"	v
+feature	data.jl	/^feature=:SDFT0$/;"	v
+feature	xgboost.jl	/^feature = :AllNoDefective$/;"	v
+features	data.jl	/^features = Dict($/;"	v
+get_data	xgboost.jl	/^get_data = data_update  # function to get data (X, y)$/;"	v
+get_data_fusion	data-material.jl	/^function get_data_fusion(args; f=args.device, position=true)$/;"	f
+get_data_fusion2	data-material.jl	/^function get_data_fusion2(args; f=args.device)$/;"	f
+get_data_material	data-material.jl	/^function get_data_material(args; f=args.device)$/;"	f
+get_data_transformer	data-material.jl	/^function get_data_transformer(args; f=args.device)$/;"	f
+get_data_transformer_fusion	data-material.jl	/^function get_data_transformer_fusion(args; f=args.device)$/;"	f
+get_data_transformer_fusion_old	data-material.jl	/^function get_data_transformer_fusion_old(args; f=args.device)$/;"	f
+getdata	data.jl	/^function getdata(cols)$/;"	f
+isna	xgboost.jl	/^        isna(x) = isinf(x) | isnan(x)$/;"	f
+label	data.jl	/^label = "G_VRH"$/;"	v
+label	data.jl	/^label = "K_VRH"$/;"	v
+label	xgboost.jl	/^label = "K_VRH"  # bulk_modulus$/;"	v
+metrics	xgboost-params-search.jl	/^metrics = pyimport("sklearn.metrics")$/;"	v
+metrics	xgboost.jl	/^metrics = pyimport("sklearn.metrics")$/;"	v
+normalize	data-material.jl	/^function normalize(X)$/;"	f
+normalize	data.jl	/^function normalize(X, y; normx=:√, normy=:noop) # :log, :√, :std, :noop$/;"	f
+normalize3	data-material.jl	/^function normalize3(X)$/;"	f
+normalize_img	data-material.jl	/^function normalize_img(X)$/;"	f
+normalized	data.jl	/^normalized=true$/;"	v
+normx	data.jl	/^normx = :√$/;"	v
+normx	xgboost.jl	/^normx = :√$/;"	v
+normy	data.jl	/^normy = :√$/;"	v
+normy	xgboost.jl	/^normy = :noop$/;"	v
+outlier	data.jl	/^        outlier(f2) = abs.(f2) .> 3std(f2)$/;"	f
+r2_score	utils.jl	/^r2_score = pyimport("sklearn.metrics").r2_score$/;"	v
+r2_score	xgboost-params-search.jl	/^r2_score = pyimport("sklearn.metrics").r2_score$/;"	v
+removed_outliers	data.jl	/^removed_outliers=false$/;"	v
+removed_outliers	xgboost.jl	/^removed_outliers = false$/;"	v
+rsquared	data-material.jl	/^function rsquared(ypred, y)$/;"	f
+rsquared	utils.jl	/^rsquared = r2_score$/;"	v
+seed	xgboost.jl	/^seed = 1$/;"	v
+thread	utils.jl	/^  thread(x) = isexpr(x, :block) ? thread(rmlines(x).args...) : x$/;"	f
+thread	utils.jl	/^  thread(x, ex) =$/;"	f
+thread	utils.jl	/^  thread(x, exs...) = reduce(thread, exs, init=x)$/;"	f
+train_test_split	xgboost-params-search.jl	/^train_test_split = pyimport("sklearn.model_selection").train_test_split$/;"	v
+train_test_split	xgboost.jl	/^train_test_split = pyimport("sklearn.model_selection").train_test_split$/;"	v
+vcats	utils.jl	/^vcats(xs) = vcat(xs...)$/;"	f
+xgb	xgboost-params-search.jl	/^xgb = pyimport("xgboost")$/;"	v
+xgb	xgboost.jl	/^xgb = pyimport("xgboost")$/;"	v
+xgboost_each_feature	xgboost.jl	/^function xgboost_each_feature(; get_data, fold=1)$/;"	f
+xgboost_each_fold	xgboost.jl	/^function xgboost_each_fold(; get_data)$/;"	f
+y	xgboost-params-search.jl	/^y = y';$/;"	v
+zips	utils.jl	/^zips(a::T) where {T<:Tuple} = map(t-> map(x->x[t], a), 1:length(first(a)))$/;"	f
+zips	utils.jl	/^zips(a::Vector{<:Tuple}) = tuple(map(t-> map(x->x[t], a), 1:length(first(a)))...)$/;"	f
