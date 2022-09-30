@@ -1,3 +1,7 @@
+from ase import Atoms
+import os
+import string
+import random
 from pymatgen.io.cif import CifParser
 from urllib.request import urlopen
 import pandas as pd
@@ -11,13 +15,15 @@ import pandas as pd
 
 import glob
 
+folder = '/g/data/mo5/sat562/'
+folder = '/mnt/c/MyCodes/MaterialScience/GPAW/'
 g = glob.glob(
-    '/mnt/c/MyCodes/MaterialScience/GPAW/gpaw-setups-0.9.20000/*.PBE.gz')
+    folder + 'gpaw-setups-0.9.20000/*.PBE.gz')
 
 available_atoms = []
 for i in g:
     available_atoms += [i.replace(
-        '/mnt/c/MyCodes/MaterialScience/GPAW/gpaw-setups-0.9.20000/', '').split('.')[0]]
+        folder + 'gpaw-setups-0.9.20000/', '').split('.')[0]]
 
 
 def fix_psuedo(a):
@@ -27,7 +33,8 @@ def fix_psuedo(a):
             a[i].symbol = 'Y'
 
 
-def get_descriptors_for_structure(a):
+def get_descriptors_for_structure(a, descriptor_size=100):
+    half_descriptor_size=int(descriptor_size/2)
     calc = GPAW(mode='lcao',
                 xc='PBE',
                 maxiter=1,
@@ -53,19 +60,19 @@ def get_descriptors_for_structure(a):
 
     for e in ev_below.values.tolist()[::-1]:
         descriptors_below += e
-    if len(ev_below) > 50:
-        descriptors_below = descriptors_below[0:50]
-    elif len(ev_below) < 50:
-        for e in range(50-len(ev_below)):
+    if len(ev_below) > half_descriptor_size:
+        descriptors_below = descriptors_below[0:half_descriptor_size]
+    elif len(ev_below) < half_descriptor_size:
+        for e in range(half_descriptor_size-len(ev_below)):
             descriptors_below += [0]
     descriptors_below = descriptors_below[::-1]
 
     for e in ev_above.values.tolist():
         descriptors_above += e
-    if len(ev_above) > 50:
-        descriptors_above = descriptors_above[0:50]
-    elif len(ev_above) < 50:
-        for e in range(50-len(ev_above)):
+    if len(ev_above) > half_descriptor_size:
+        descriptors_above = descriptors_above[0:half_descriptor_size]
+    elif len(ev_above) < half_descriptor_size:
+        for e in range(half_descriptor_size-len(ev_above)):
             descriptors_above += [0]
 
     return descriptors_below + descriptors_above + \
@@ -80,48 +87,27 @@ def get_descriptors_for_structure(a):
          H.e_total_free/num_atoms]
 
 
-def descriptors(cif):
-    import random
-    import string
-    import os
-    file_name = ''.join(random.choices(string.ascii_uppercase +
-                                       string.digits, k=10))
-    f = open(file_name+'.cif', 'w')
-    f.write(cif)
-    f.flush()
-    f.close
+def descriptors(cif, descriptor_size=100, calculation_type='bulk'):
+    if type(cif) is string:
+        parser = CifParser.from_string(cif)
+        structure = parser.get_structures()
+        structure = structure[0]
 
+        a = Atoms(pbc=True, cell=structure.lattice.matrix,
+                positions=structure.cart_coords, numbers=structure.atomic_numbers)
+    else:
+        a = cif
     d_pristine = []
-    d_changed = []
-
     try:
-
-        a = read(file_name+'.cif')
-        niggli_reduce(a)
+        a_copy = a.copy()
+        if calculation_type == 'bulk':
+            niggli_reduce(a)
         fix_psuedo(a)
-        d_pristine = get_descriptors_for_structure(a)
-        # a.get_potential_energy()
-
-        # Replace heaviest atom with atomic_number-1, lightest with atomic_number+1
-        a = read(file_name+'.cif')
-        niggli_reduce(a)
-        fix_psuedo(a)
-        max_atomic_number = max(a.numbers)
-        min_atomic_number = min(a.numbers)
-
-        if max_atomic_number != max_atomic_number:
-            for i in range(len(a)):
-                if a[i].number == max_atomic_number:
-                    a[i].number -= 1
-                elif a[i].number == min_atomic_number:
-                    a[i].number += 1
-
-        d_changed = get_descriptors_for_structure(a)
-        os.remove(file_name+'.cif')
+        d_pristine = get_descriptors_for_structure(a, descriptor_size)
+        
     except Exception as e:
         print('Problem in GPAW')
-        os.remove(file_name+'.cif')
-    if len(d_changed) > 0 and len(d_pristine) > 0:
-        return d_pristine + d_changed
+    if len(d_pristine) > 0:
+        return d_pristine
     else:
         return []
